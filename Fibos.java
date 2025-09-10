@@ -22,16 +22,20 @@ public class Fibos {
     }
 
     public int memoizedFibo(int n, int[] f) {
-        for (int i = 0; i < n; i++) {
-
+        for (int i = 0; i <= n; i++) {
+            f[i] = -1;
         }
-        return 0;
+        return lookupFibo(n, f);
     }
 
     private int lookupFibo(int n, int[] f) {
-        if (f[n] >= 0) return f[n];
-
-
-        return 0;
+        if (f[n] >= 0) {
+            return f[n];
+        } else if (n <= 1) {
+            f[n] = n;
+        } else {
+            f[n] = lookupFibo(n - 1, f) + lookupFibo(n - 2, f);
+        }
+        return f[n];
     }
 }
