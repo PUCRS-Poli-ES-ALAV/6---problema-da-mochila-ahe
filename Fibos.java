@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class Fibos {
 
@@ -37,5 +35,24 @@ public class Fibos {
             f[n] = lookupFibo(n - 1, f) + lookupFibo(n - 2, f);
         }
         return f[n];
+    }
+
+    public int backPackPD(int n, int c, int[][] itens){
+        int [][] maxTab = new int[n + 1][c + 1];
+        
+        for(int i  = 1 ; i <= n ; i++){
+            int peso = itens[i][0];
+            int valor = itens[i][1];
+
+            for(int j = 1; j <= c; j++){
+                if(peso <= j){
+                    maxTab[i][j] = Math.max(maxTab[i  - 1][j], valor + maxTab[i - 1][j - peso]);
+
+                }else {
+                    maxTab[i][j] = maxTab[i - 1][j];
+                }
+            }
+        }
+        return maxTab[n][c];
     }
 }
