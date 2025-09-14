@@ -8,26 +8,32 @@ public class Fibos {
     public int counterInstructionsFibo = 0;
     public int counterInstructionsMemoizedFibo = 0;
 
-
+    public int counterMochilaInstructions = 0;
+    public int counterMochilaIteractions = 0;
 
 
     public int fiboRec(int n) {
-        if (n <= 1) return n; counterInstructionsFiboRec++;
+        if (n <= 1) return n;
+        counterInstructionsFiboRec++;
         counterFiboRec++;
         counterInstructionsFiboRec++;
         return fiboRec(n - 1) + fiboRec(n - 2);
     }
 
     public int fibo(int n) {
-        int[] f = new int[n + 1]; counterInstructionsFibo++;
-        f[0] = 0; counterInstructionsFibo++;
-        f[1] = 1; counterInstructionsFibo++;
+        int[] f = new int[n + 1];
+        counterInstructionsFibo++;
+        f[0] = 0;
+        counterInstructionsFibo++;
+        f[1] = 1;
+        counterInstructionsFibo++;
 
         counterInstructionsFibo++;
         for (int i = 2; i <= n; i++) {
             counterInstructionsFibo++;
             counterInstructionsFibo++;
-            f[i] = f[i - 1] + f[i - 2]; counterInstructionsFibo++;
+            f[i] = f[i - 1] + f[i - 2];
+            counterInstructionsFibo++;
             counterFibo++;
         }
 
@@ -39,7 +45,8 @@ public class Fibos {
         for (int i = 0; i <= n; i++) {
             counterInstructionsMemoizedFibo++;
             counterInstructionsMemoizedFibo++;
-            f[i] = -1; counterInstructionsMemoizedFibo++;
+            f[i] = -1;
+            counterInstructionsMemoizedFibo++;
             counterMemoizedFibo++;
         }
         return lookupFibo(n, f);
@@ -55,7 +62,8 @@ public class Fibos {
             counterInstructionsMemoizedFibo++;
             counterMemoizedFibo++;
             counterInstructionsMemoizedFibo++;
-            f[n] = n;  counterInstructionsMemoizedFibo++;
+            f[n] = n;
+            counterInstructionsMemoizedFibo++;
         } else {
             counterMemoizedFibo++;
             counterInstructionsMemoizedFibo++;
@@ -66,18 +74,32 @@ public class Fibos {
     }
 
 
-    public int backPackPD(int n, int c, int[][] itens){
-        int [][] maxTab = new int[n + 1][c + 1];
-        
-        for(int i  = 1 ; i <= n ; i++){
+    public int backPackPD(int n, int c, int[][] itens) {
+        int[][] maxTab = new int[n + 1][c + 1];
+        counterMochilaInstructions++;
+
+        counterMochilaInstructions++;
+        for (int i = 1; i <= n; i++) {
+            counterMochilaIteractions++;
+            counterMochilaInstructions++;
+            counterMochilaInstructions++;
             int peso = itens[i][0];
+            counterMochilaInstructions++;
             int valor = itens[i][1];
+            counterMochilaInstructions++;
 
-            for(int j = 1; j <= c; j++){
-                if(peso <= j){
-                    maxTab[i][j] = Math.max(maxTab[i  - 1][j], valor + maxTab[i - 1][j - peso]);
+            counterMochilaInstructions++;
+            for (int j = 1; j <= c; j++) {
+                counterMochilaIteractions++;
+                counterMochilaInstructions++;
+                counterMochilaInstructions++;
+                if (peso <= j) {
+                    counterMochilaInstructions++;
+                    counterMochilaInstructions++;
+                    maxTab[i][j] = Math.max(maxTab[i - 1][j], valor + maxTab[i - 1][j - peso]);
 
-                }else {
+                } else {
+                    counterMochilaInstructions++;
                     maxTab[i][j] = maxTab[i - 1][j];
                 }
             }
@@ -109,5 +131,11 @@ public class Fibos {
         return counterInstructionsMemoizedFibo;
     }
 
+    public int getCounterMochilaInstructions() {
+        return counterMochilaInstructions;
+    }
 
+    public int getCounterMochilaIteractions() {
+        return counterMochilaIteractions;
+    }
 }
